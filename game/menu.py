@@ -58,7 +58,18 @@ class MainMenu(Menu):
 
     def create_new_player(self):
         # Adds a new Menu to the layer, meant for the user to enter their name.
-        pass
+        title = cocos.text.Label(
+            'Type your player name',
+            font_size=40,
+            font_name='Zeroes Three',
+            color=(255, 255, 255, 255),
+            anchor_x=CENTER
+        )
+        # Place title just below our game's title.
+        title.position = (WINDOW_WIDTH / 2, WINDOW_HEIGHT / 1.25)
+        self.parent.add(ColorLayer(0, 0, 0, 200).add(title), z=3, name='NewPlayerBackground')
+        self.parent.add(NewPlayerMenu(), z=4)
+        return True
 
     def on_quit(self):
         # Method has to be named this way, the Escape key maps to it.
@@ -68,3 +79,60 @@ class MainMenu(Menu):
         # STUB.
         print("Sound toggle: ", value)
         return True
+
+
+class NewPlayerMenu(Menu):
+    def __init__(self):
+        super(NewPlayerMenu, self).__init__('')
+
+        self.player_name = ''
+
+        # Overriding the font settings for items.
+        self.font_item['font_name'] = 'Zeroes Three',
+        self.font_item['color'] = (200, 200, 200, 200)
+        self.font_item['font_size'] = 32
+        self.font_item_selected['font_name'] = 'Zeroes Three'
+        self.font_item_selected['color'] = (255, 255, 255, 255)
+        self.font_item_selected['font_size'] = 34
+
+        self.create_menu([
+            EntryMenuItem('', self.on_typing, '<NewPlayer>', max_length=15),
+            MenuItem('OK', self.on_confirm),
+            MenuItem('Cancel', self.on_quit),
+        ])
+
+    def on_confirm(self):
+        # User has added their name, now we'll store it.
+        if len(self.player_name) == 0:
+            pass
+
+        elif self.player_name in SAVEGAMES['players']:
+            # Player name already exists!
+            label = cocos.text.Label(
+                'Player name ' + self.player_name + ' already exists!',
+                font_size=20,
+                font_name='Zeroes Three',
+                color=(255, 150, 150, 255),
+                anchor_x=CENTER
+            )
+            # Place label below this layer's label, which is below the game's title.
+            label.position = (WINDOW_WIDTH / 2, WINDOW_HEIGHT / 1.4)
+            label.do(FadeOut(3) + CallFunc(label.kill))
+            self.parent.get('NewPlayerBackground').add(label)
+            return False
+
+        else:
+            print('Creating a new user: ', self.player_name)
+            if deCreateNewPlayer(self.player_name):
+                # Reload the entire Menu.
+                director.replace(MenuScene())
+                return True
+
+    def on_typing(self, value):
+        self.player_name = value
+
+    def on_quit(self):
+        # Method has to be named this way, the Escape key maps to it.
+        # User wants to cancel.
+        self.parent.remove('NewPlayerBackground')
+        self.kill()
