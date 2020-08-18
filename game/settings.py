@@ -7,6 +7,58 @@ WINDOW_HEIGHT    = 800
 WINDOW_SPEED_MAX = 100  # px/sec (max scrolling speed)
 
 
+XP_LEVELS = [
+    {  # Level 0.
+        'chance_to_hit'   : 0.75,  # Your chance to hit your target, when your target is at your maximum range.
+        'damage_factor'   : 0.75,  # The damage you're doing is multiplied by this factor.
+        'timeout_factor'  : 1.25,  # The waiting time until the next shot is multiplied by this much.
+        'rotation_factor' : 0.75,  # Your turret's rotation speed is multiplied by this factor.
+        'hitpoints_factor': 0.75,  # Your maximum health is multiplied by this factor.
+        'maximum_shots'   : 10,    # After this many shots, you are upgraded.
+    },
+    {  # Level 1.
+        'chance_to_hit'   : 0.80,  # Your chance to hit your target, when your target is at your maximum range.
+        'damage_factor'   : 0.80,  # The damage you're doing is multiplied by this factor.
+        'timeout_factor'  : 1.20,  # The waiting time until the next shot is multiplied by this much.
+        'rotation_factor' : 0.80,  # Your turret's rotation speed is multiplied by this factor.
+        'hitpoints_factor': 0.80,  # Your maximum health is multiplied by this factor.
+        'maximum_shots'   : 20,    # After this many shots, you are upgraded.
+    },
+    {  # Level 2.
+        'chance_to_hit'   : 0.85,  # Your chance to hit your target, when your target is at your maximum range.
+        'damage_factor'   : 0.85,  # The damage you're doing is multiplied by this factor.
+        'timeout_factor'  : 1.15,  # The waiting time until the next shot is multiplied by this much.
+        'rotation_factor' : 0.85,  # Your turret's rotation speed is multiplied by this factor.
+        'hitpoints_factor': 0.85,  # Your maximum health is multiplied by this factor.
+        'maximum_shots'   : 30,    # After this many shots, you are upgraded.
+    },
+    {  # Level 3.
+        'chance_to_hit'   : 0.90,  # Your chance to hit your target, when your target is at your maximum range.
+        'damage_factor'   : 0.90,  # The damage you're doing is multiplied by this factor.
+        'timeout_factor'  : 1.10,  # The waiting time until the next shot is multiplied by this much.
+        'rotation_factor' : 0.90,  # Your turret's rotation speed is multiplied by this factor.
+        'hitpoints_factor': 0.90,  # Your maximum health is multiplied by this factor.
+        'maximum_shots'   : 50,    # After this many shots, you are upgraded.
+    },
+    {  # Level 4.
+        'chance_to_hit'   : 0.95,  # Your chance to hit your target, when your target is at your maximum range.
+        'damage_factor'   : 0.95,  # The damage you're doing is multiplied by this factor.
+        'timeout_factor'  : 1.05,  # The waiting time until the next shot is multiplied by this much.
+        'rotation_factor' : 0.95,  # Your turret's rotation speed is multiplied by this factor.
+        'hitpoints_factor': 0.95,  # Your maximum health is multiplied by this factor.
+        'maximum_shots'   : 75,    # After this many shots, you are upgraded.
+    },
+    {  # Level 5.
+        'chance_to_hit'   : 1,     # Your chance to hit your target, when your target is at your maximum range.
+        'damage_factor'   : 1,     # The damage you're doing is multiplied by this factor.
+        'timeout_factor'  : 1,     # The waiting time until the next shot is multiplied by this much.
+        'rotation_factor' : 1,     # Your turret's rotation speed is multiplied by this factor.
+        'hitpoints_factor': 1,     # Your maximum health is multiplied by this factor.
+        'maximum_shots'   : 0,     # You are not upgraded.
+    },
+]
+
+
 # The basic unit that players start with.
 basic_unit = {
     'body': ['humans', 0],
