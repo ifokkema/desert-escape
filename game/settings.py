@@ -59,6 +59,67 @@ XP_LEVELS = [
 ]
 
 
+# Define the parts we need to build units.
+BODIES = {
+    'humans': [
+        {  # Human 0 (no armor, no helmet).
+            'type': 'ground',
+            'subtype': 'human',
+            'image_us': 'human_body_1_us.png',
+            'image_them': 'human_body_1_them.png',
+            'image_sheet_width': 12,
+            'height': 2,
+            'hitpoints': 100,
+            'turrets': {
+                'primary': {
+                    'location': [0, 6],
+                    'supported': {
+                        'humans': [0, 1],
+                    },
+                },
+                'secondary': {},
+            },
+            'death_animation_us': 'human_1_death_ani_us.png',
+            'death_animation_them': 'human_1_death_ani_them.png',
+            'death_animation_sheet_width': 5,
+            'dead_image_us': 'human_1_dead_us.png',
+            'dead_image_them': 'human_1_dead_them.png',
+        },
+        {}, # Armor, no helmet.
+        {}, # Armor, helmet.
+    ],
+    'tanks': [
+        {  # Tank 0.
+            'type': 'ground',                      # { ground | air }
+            'subtype': 'tank',                     # { mine | human | tank | bunker } | { drone | helicopter }
+            'image_us': 'tank_body_1_us.png',      # Image of body, if part of our team.
+            'image_them': 'tank_body_1_them.png',  # Image of body, if part of their team.
+            'image_sheet_width': 1,                # For animation, the size of the sprite sheet.
+            'height': 5,                           # For determining the shadow's offset. { 0 - 10 }
+            'hitpoints': 1000,                     # Amount of damage this body can take.
+            'turrets': {
+                'primary': {
+                    'location': [0, 10],           # Location on the body where to place the center of the turret.
+                    'supported': {
+                        'tanks': [0, 1],
+                    },
+                },
+                'secondary': {},
+            },
+            # Animations for destruction (no loop), and images for destroyed state.
+            'death_animation_us': 'tank_body_1_death_ani_us.png',
+            'death_animation_them': 'tank_body_1_death_ani_them.png',
+            'death_animation_sheet_width': 12,
+            'dead_image_us': 'tank_body_1_dead_us.png',
+            'dead_image_them': 'tank_body_1_dead_them.png',
+        },
+    ],
+    'drones': [
+        {}
+    ],
+}
+
+
 # The basic unit that players start with.
 basic_unit = {
     'body': ['humans', 0],
