@@ -120,6 +120,67 @@ BODIES = {
 }
 
 
+TURRETS = {
+    'humans': [
+        {  # Human weapon 0 (handgun).
+            'types': ['ground', 'air'],
+            'subtypes': ['mine', 'human', 'drone', 'bunker', 'helicopter', 'tank'],
+            'image_us': 'human_gun_1.png',
+            'image_them': 'human_gun_1.png',
+            'range': 200,
+            'rotate_speed': 180,
+            'fire_timeout': 0.5,
+            'fire_animation_us': 'human_gun_1_fire_ani.png',
+            'fire_animation_them': 'human_gun_1_fire_ani.png',
+            'fire_animation_sheet_width': 6,
+            'projectile': {
+                'speed': 0,
+                'image': '',
+                'draw_line': True,
+                'damage': 20,
+                'blast_range': 0,
+                'hit_animation': 'hit_1_ani.png',
+                'hit_animation_sheet_width': 5,
+            },
+            'death_animation_us': 'human_gun_1_death_ani.png',
+            'death_animation_them': 'human_gun_1_death_ani.png',
+            'death_animation_sheet_width': 5,
+            'dead_image_us': 'human_gun_1_dead.png',
+            'dead_image_them': 'human_gun_1_dead.png',
+        },
+    ],
+    'tanks': [
+        {  # Tank Turret 0.
+            'types': ['ground'],
+            'subtypes': ['tank', 'bunker', 'human'],  # In order of preference, what do we shoot at?
+            'image_us': 'tank_turret_1_us.png',       # Image of body, if part of our team.
+            'image_them': 'tank_turret_1_them.png',   # Image of body, if part of their team.
+            'range': 800,                             # Range from which it can fire. FIXME: Do we need a minimum range?
+            'rotate_speed': 15,                       # In degrees. Rotation speed of 0 means no rotation.
+            'fire_timeout': 4,                        # Time between two shots.
+            'fire_animation_us': 'tank_turret_1_fire_ani.png',
+            'fire_animation_them': 'tank_turret_1_fire_ani.png',
+            'fire_animation_sheet_width': 6,
+            'projectile': {
+                'speed': 0,                           # Speed of projectile. 0 means instant hit.
+                'image': '',                          # Projectile image, if needed.
+                'draw_line': False,                   # Should we draw a line between the turret and the target?
+                'damage': 100,                        # The damage we'll do at a full hit.
+                'blast_range': 50,                    # Units within this range will receive damage.
+                'hit_animation': 'explosion_1_ani.png',
+                'hit_animation_sheet_width': 5,
+            },
+            # Animations for destruction (no loop), and images for destroyed state.
+            'death_animation_us': 'tank_turret_1_death_ani_us.png',
+            'death_animation_them': 'tank_turret_1_death_ani_them.png',
+            'death_animation_sheet_width': 12,
+            'dead_image_us': 'tank_turret_1_dead_us.png',
+            'dead_image_them': 'tank_turret_1_dead_them.png',
+        },
+    ],
+}
+
+
 # The basic unit that players start with.
 basic_unit = {
     'body': ['humans', 0],
